@@ -27,6 +27,23 @@ pino.info('hi') // creates and logs {msg: 'hi', level: 30, time: <ts>}
 
 When `write` is set, `asObject` will always be `true`.
 
+### `msgPrefix` (String)
+
+```js
+const pino = require('pino')({
+  browser: {
+    asObject: true
+  },
+  msgPrefix: '[Prefix] '
+})
+```
+
+```js
+pino.info('hi) // creates and logs {msg: '[Prefix] hi', level: 30, time: <ts>}
+```
+
+When use `msgPrefix`, please set `asObject` is `true`.
+
 ### `write` (Function | Object)
 
 Instead of passing log messages to `console.log` they can be passed to
