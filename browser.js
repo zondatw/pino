@@ -112,6 +112,8 @@ function pino (opts) {
     levels,
     timestamp: getTimeFunction(opts)
   }
+  logger.msgPrefix = opts.msgPrefix
+
   logger.levels = getLevels(opts)
   logger.level = level
 
@@ -339,7 +341,10 @@ function asObject (logger, level, args, ts) {
     }
     msg = argsCloned.length ? format(argsCloned.shift(), argsCloned) : undefined
   } else if (typeof msg === 'string') msg = format(argsCloned.shift(), argsCloned)
-  if (msg !== undefined) o.msg = msg
+  if (msg !== undefined) {
+    if (typeof logger.msgPrefix === 'string') msg = logger.msgPrefix + msg
+    o.msg = msg
+  }
   return o
 }
 
